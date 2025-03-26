@@ -53,7 +53,7 @@
 		HashMap<String, Object> film = new HashMap<String, Object>();
 		film.put("actorName", rs.getString("actorName"));
 		film.put("actorCode", rs.getString("actorCode"));
-		
+		 
 		list.add(film);
 	}
 	%>

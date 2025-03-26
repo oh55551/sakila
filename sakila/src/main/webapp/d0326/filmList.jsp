@@ -58,7 +58,7 @@
 	<h1>영화리스트</h1>
 	<h2>filmList</h2>
 	<table border="10">
-		<tr>
+		<tr> 
 			<th>filmNo</th>
 			<th>filmTitle</th>
 

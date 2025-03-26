@@ -34,7 +34,7 @@
 		HashMap<String, Object> film = new HashMap<String, Object>();
 		film.put("actorName", rs1.getString("actorName"));
 		film.put("actorCode", rs1.getInt("actorCode"));
-		
+		 
 		list.add(film);
 	}
 %>

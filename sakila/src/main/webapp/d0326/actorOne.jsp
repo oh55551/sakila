@@ -40,7 +40,7 @@
 	}
 %>
 
-	<h1>출연작 정보</h1>
+	<h1>출연작 정보</h1> 
 	<h2>actorOne</h2>
 	<table border="10">
 		<tr>

@@ -9,17 +9,6 @@
 </head>
 <body>
 <%
-	//검색
-	String searchWord = request.getParameter("searchWord");
-		if(searchWord == null){
-			searchWord = "";
-		}
-		
-	int storeId = 0;
-	if (request.getParameter("storeId") != null) {
-		storeId = Integer.parseInt(request.getParameter("storeId"));
-	}
-	
 	//페이징
 	int currentPage=1;
 	if(request.getParameter("currentPage")!=null){

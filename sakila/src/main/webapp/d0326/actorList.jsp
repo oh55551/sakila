@@ -23,12 +23,12 @@
 	ResultSet rs=null;
 	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila","root","java1234");
 	
-	String sql="SELECT CONCAT(a.first_name, ' ', a.last_name) AS actorName "
+	String sql="SELECT DISTINCT CONCAT(a.first_name, ' ', a.last_name) AS actorName "
 			+",fa.actor_id AS actorCode "
 			+"from film f "
 			+"INNER JOIN film_actor fa ON f.film_id=fa.film_id "
 			+"INNER JOIN actor a ON a.actor_id=fa.actor_id "
-			+"order BY a.actor_id "
+			+"order BY fa.actor_id "
 			+"limit ?,? ";
 	stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, startIdx);

@@ -23,7 +23,7 @@
 	ResultSet rs=null;
 	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila","root","java1234");
 	
-	String sql="SELECT DISTINCT CONCAT(a.first_name, ' ', a.last_name) AS actorName "
+	String sql="SELECT DISTINCT CONCAT(a.first_name, ' ', a.last_name) AS actorName " //distinct로 중복제거
 			+",fa.actor_id AS actorCode "
 			+"from film f "
 			+"INNER JOIN film_actor fa ON f.film_id=fa.film_id "

@@ -78,6 +78,7 @@ String searchTitle = request.getParameter("searchTitle");
  		lastPage++;
  	}
  	
+ 	// 1~10페이지
  	int pageGroup = (currentPage-1) / 10;
  	int startPage = pageGroup * 10 + 1;
  	int endPage = startPage + 9;

@@ -23,17 +23,18 @@
 	ResultSet rs=null;
 	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila","root","java1234");
 
-	String sql = "SELECT t1.inventory_id as id, t1.title as title, t2.ISrental as rental "
+	String sql =  "SELECT t1.inventory_id AS id, t1.title AS title, t2.ISrental AS rental, t2.return_date AS returndate "
 		    + "FROM (SELECT i.inventory_id, f.title "
 		    + "FROM inventory i INNER JOIN film f "
 		    + "ON i.film_id = f.film_id) t1 "
-		    + "LEFT JOIN (SELECT inventory_id, rental_date, "
+		    + "LEFT JOIN (SELECT inventory_id, rental_date, return_date, " // ← return_date 추가됨
 		    + "CASE WHEN return_date IS NULL THEN '대여불가' "
 		    + "ELSE '대여가능' END AS ISrental "
 		    + "FROM rental WHERE (inventory_id, rental_date) IN ("
 		    + "SELECT inventory_id, MAX(rental_date) FROM rental GROUP BY inventory_id) "
 		    + ") t2 ON t1.inventory_id = t2.inventory_id "
 		    + "LIMIT ?, ?";
+	
 	stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, startIdx);
 	stmt.setInt(2, rowPerPage);
@@ -41,7 +42,7 @@
 	
 	PreparedStatement stmt2 = null;
 	ResultSet rs2=null;	
-	String sql2="select count(*) cnt from film";
+	String sql2="select count(*) cnt from inventory";
 	stmt2=conn.prepareStatement(sql2);
 	rs2 = stmt2.executeQuery();
 	rs2.next();
@@ -58,6 +59,7 @@
 		inventory.put("inventoryId", rs.getString("id"));
 		inventory.put("filmTitle", rs.getString("title"));
 		inventory.put("rental", rs.getString("rental"));
+		inventory.put("returnDate", rs.getString("returndate"));
 		
 		list.add(inventory);
 	}
@@ -69,6 +71,7 @@
 			<th>inventoryId</th>
 			<th>filmTitle</th>
 			<th>rental</th>
+			<th>returnDate</th>
 		</tr>
 		<%
 				for(HashMap<String, Object> f : list){
@@ -77,6 +80,7 @@
 			<td><%=f.get("inventoryId")%></td>
 			<td><%=f.get("filmTitle")%></td>
 			<td><%=f.get("rental")%></td>
+			<td><%=f.get("returnDate")%></td>
 		</tr>
 		<%
 			}

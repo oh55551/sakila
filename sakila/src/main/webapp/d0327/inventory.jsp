@@ -9,6 +9,8 @@
 		return;
 	}
 %>
+	<div><a href="/sakila/d0327/insertRental.jsp?inventoryId=1">대여하기</a></div>
+
 	<div>
 		<a href="/sakila/index.jsp">[홈화면으로]</a>
 	<br>
@@ -130,7 +132,21 @@ String searchTitle = request.getParameter("searchTitle");
 		<tr>
 			<td><%=f.get("inventoryId")%></td>
 			<td><%=f.get("filmTitle")%></td>
-			<td><%=f.get("rental")%></td>
+			<td>
+				<%
+					String rentalStatus = (String)f.get("rental");
+					String inventoryId = (String)f.get("inventoryId");
+					if ("대여가능".equals(rentalStatus)) {
+				%>
+						<a href="/sakila/d0327/insertRental.jsp?inventoryId=<%=inventoryId%>">대여하기</a>
+				<%
+					} else {
+				%>
+						<%=rentalStatus != null ? rentalStatus : "정보없음"%>
+				<%
+					}
+				%>
+			</td>
 			<td><%=f.get("returnDate")%></td>
 		</tr>
 		<%

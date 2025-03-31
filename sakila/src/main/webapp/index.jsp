@@ -24,6 +24,7 @@
 	<hr>
 	<h1>INDEX</h1>
 	<ol>
+		<li><a href="/sakila/rentalList.jsp">렌탈목록</a></li>
 		<li><a href="/sakila/d0326/filmList.jsp">필름목록</a></li>
 		<li><a href="/sakila/d0326/actorList.jsp">배우목록</a></li>
 		<li><a href="/sakila/d0327/inventory.jsp">인벤토리목록</a></li>

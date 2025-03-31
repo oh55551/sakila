@@ -43,10 +43,5 @@
 	}else{
 		System.out.println("비밀번호를 확인해주세요.");
 		response.sendRedirect("/sakila/updatePasswordForm.jsp");	
-	}
-	
-	
-	
-	
-	
+	}					
 %>

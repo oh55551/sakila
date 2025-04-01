@@ -78,7 +78,7 @@
 			<tr>
 				<td>staffId</td>
 				<td>
-				<input type="text" name="customerId" value="<%=staffId %>">
+				<input type="text" name="staffId" value="<%=staffId %>">
 				</td>
 			</tr>
 		</table>

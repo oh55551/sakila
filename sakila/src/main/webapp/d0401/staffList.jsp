@@ -9,7 +9,6 @@
 </head>
 <body>
 <%
-
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -26,7 +25,7 @@
 	PreparedStatement stmt2 = null;
 	ResultSet rs2 = null;
 	
-	String sql ="SELECT category_id, GROUP_CONCAT(film_id) as filmId FROM film_category GROUP BY category_id  LIMIT ?, ?";
+	String sql ="SELECT category_id, GROUP_CONCAT(film_id) as filmId FROM film_category GROUP BY category_id LIMIT ?, ?";
 	String sql2="SELECT COUNT(DISTINCT category_id) AS cnt FROM film_category limit ?,?";
 	
 	stmt=conn.prepareStatement(sql);
@@ -74,7 +73,7 @@
 		}
 	%>
 </table>
-
+	
 	<a href="/sakila/d0401/staffList.jsp?currentPage=1">[첫페이지로]</a>
 	<%
 		if(currentPage>1){
@@ -82,7 +81,7 @@
 	<%
 		}
 	%>
-<%
+	<%
  		if(startPage>10){
  	%>
  			<a href="/sakila/d0401/staffList.jsp?currentPage=<%=startPage-10 %>">[이전]</a>

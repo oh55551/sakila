@@ -20,7 +20,7 @@
 	
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila","root","java1234");
-
+	
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	PreparedStatement stmt2 = null;
@@ -36,7 +36,7 @@
 					+"left join `film_category` `fc` on((`fa`.`film_id` = `fc`.`film_id`))) "
 					+"left join `category` `c` on((`fc`.`category_id` = `c`.`category_id`))) "
 					+"group by `a`.`actor_id`,`a`.`first_name`,`a`.`last_name`  LIMIT ?, ?";
-	String sql2="select COUNT(*) AS cnt FROM actor LIMIT ?, ?";
+	String sql2="select COUNT(*) AS cnt FROM actor";
 	
 	stmt=conn.prepareStatement(sql);
 	System.out.println(stmt);
@@ -44,8 +44,6 @@
 	System.out.println(stmt2);
 	stmt.setInt(1, startIdx);      
 	stmt.setInt(2, rowPerPage); 
-	stmt2.setInt(1, startIdx);      
-	stmt2.setInt(2, rowPerPage); 
 	rs=stmt.executeQuery();
 	rs2=stmt2.executeQuery();
 	
@@ -65,7 +63,7 @@
  	if(endPage>lastPage){
  		endPage=lastPage; }
 %>
-<h1>StaffList</h1>
+<h1>actor info</h1>
 <table border="1">
 	<tr>
 		<th>actor_id</th>
@@ -93,7 +91,7 @@
 	<%
 		}
 	%>
-<%
+	<%
  		if(startPage>10){
  	%>
  			<a href="/sakila/d0401/actorInfoList.jsp?currentPage=<%=startPage-10 %>">[이전]</a>
